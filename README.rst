@@ -1,4 +1,4 @@
-SPC Electrum - Bitcoin multi-signature wallet
+SPC Electrum - Multi-signature bitcoin wallet
 =================================================
 
 ::
