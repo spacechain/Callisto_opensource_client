@@ -1,5 +1,5 @@
-Electrum - Lightweight Bitcoin client
-=====================================
+SPC Electrum - Bitcoin multi-signature wallet
+=================================================
 
 ::
 
