@@ -47,7 +47,7 @@ class Wallet_TC(Multisig_Wallet):
         """
         mk_tx = lambda o: Multisig_Wallet.make_unsigned_transaction(
             self, coins, o, config, fixed_fee, change_addr)
-        fee = self.extra_fee(config) if not is_sweep else 0
+        fee = self.extra_fee(config)
         if fee:
             address = self.billing_info['billing_address_segwit']
             fee_output = TxOutput(TYPE_ADDRESS, address, fee)
@@ -72,19 +72,9 @@ class Wallet_TC(Multisig_Wallet):
         :return:
         """
 
-        if self.can_sign_without_server():
-            return 0
-        if self.billing_info is None:
-            self.plugin.start_request_thread(self)
-            return 0
-        if self.billing_info.get('tx_remaining'):
-            return 0
-        if self.is_billing:
-            return 0
-        n = self.num_prepay(config)
-        price = int(self.price_per_tx[n])
-        if price > 100000 * n:
-            raise Exception('too high trustedcoin fee ({} for {} txns)'.format(price, n))
+        self.plugin.start_request_thread(self)
+
+        price = int(self.price)
         return price
 
     def can_sign_without_server(self):

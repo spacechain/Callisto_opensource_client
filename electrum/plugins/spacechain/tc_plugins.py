@@ -101,8 +101,7 @@ class TCPlugin(BasePlugin):
         wallet.add_new_billing_address(billing_index, billing_info['billing_address_segwit'], addr_type='legacy')
 
         wallet.billing_info = billing_info
-        wallet.price_per_tx = dict(billing_info['price_per_tx'])
-        wallet.price_per_tx.pop(1, None)
+        wallet.price = billing_info['price']
         return True
 
     def start_request_thread(self, wallet):
